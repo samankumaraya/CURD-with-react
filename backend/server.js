@@ -7,7 +7,7 @@ const app = express();
 
 app.use(cors());
 
-mysql.createConnection({
+const db = mysql.createConnection({
     host : "localhost",
     user:"root",
     password:"",
@@ -15,7 +15,11 @@ mysql.createConnection({
 })
 
 app.get("/", (req,res) => {
-    res.json("Hello from backend");
+    const sql = "SELECT * FROM student";
+    db.query(sql, (err,data) => {
+        if(err) return res.json("Error");
+        return res.json(data);
+    })
 })
 
 app.listen(8081,  () => {
