@@ -1,17 +1,18 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import BackgroundImg from './bg_image.jpg'
+import { useNavigate, useParams } from 'react-router-dom';
+import BackgroundImg from './bg_image.jpg';
 
-function CreateStudent() {
+function UpdateStudent() {
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    const {id} = useParams();
     const navigate = useNavigate();
 
     function handleSubmit(event){
         event.preventDefault();
-        axios.post('http://localhost:8081/create',{name,email})
+        axios.put('http://localhost:8081/update/' +id,{name,email})
         .then(res => {
             console.log(res);
             navigate('/');
@@ -19,17 +20,16 @@ function CreateStudent() {
     }
 
   return (
-    <div className='d-flex vh-100 bg-primary justify-content-center align-item-center'  style={{
+    <div className='d-flex vh-100 bg-primary justify-content-center align-item-center'style={{
         backgroundImage: `url(${BackgroundImg})`, 
         backgroundSize: 'cover', 
         backgroundRepeat: 'no-repeat', 
         
       }}>
-
       <div className='w-50 bg-white rounded p-3'>
          <form onSubmit={handleSubmit}>
 
-            <h2>Add Student</h2>
+            <h2>Update Student</h2>
             <div className='mb-2'>
                <label htmlFor=" ">Name</label>
                <input type='text' placeholder='Enter Name' className='form-control' onChange={e => setName(e.target.value)}/>
@@ -40,11 +40,11 @@ function CreateStudent() {
                <input type='email' placeholder='Enter Email' className='form-control' onChange={e => setEmail(e.target.value)}/>
             </div>
 
-          <button className='btn btn-success'>Submit</button>
+          <button className='btn btn-success'>Update</button>
          </form>
       </div>
     </div>
   )
 }
 
-export default CreateStudent
+export default UpdateStudent;
