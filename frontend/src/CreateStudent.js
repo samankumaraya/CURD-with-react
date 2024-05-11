@@ -26,7 +26,11 @@ function CreateStudent() {
         
       }}>
 
-      <div className='w-50 bg-white rounded p-3'>
+      <div className='w-50 my-5 py-3 bg-white rounded p-3' style={{
+        backgroundColor: 'blue', 
+         
+        
+      }}>
          <form onSubmit={handleSubmit}>
 
             <h2>Add Student</h2>

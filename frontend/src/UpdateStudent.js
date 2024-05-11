@@ -26,7 +26,7 @@ function UpdateStudent() {
         backgroundRepeat: 'no-repeat', 
         
       }}>
-      <div className='w-50 bg-white rounded p-3'>
+      <div className='w-50 bg-white rounded p-3 py-5 my-5'>
          <form onSubmit={handleSubmit}>
 
             <h2>Update Student</h2>
